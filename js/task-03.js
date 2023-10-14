@@ -16,15 +16,18 @@ const images = [
 const items = document.querySelector('.gallery');
 items.style.display = 'flex';
 items.style.padding = '0';
-items.style.fontSize = '24px';
 items.style.listStyle = 'none';
-items.style.color = 'tomato';
 items.style.gap = '20px';
 items.style.justifyContent = 'center';
 
-images.map(image => {
-    const li = `<li>
-      <img class:"image" url=${image.url} alt=${image.alt} />
-    </li>`;
-    items.insertAdjacentHTML('beforeend', li)
-  });
+function createImages(arr) {
+  const setList = arr.map(({url, alt}) => 
+    `<li>
+      <img src=${url} alt=${alt} width="300"/>
+    </li>`
+  ).join('');
+
+  items.insertAdjacentHTML('beforeend', setList);
+}
+
+createImages(images);
